@@ -1,0 +1,5 @@
+#Generate privte and public key pair
+openssl  genrsa -out mybank.key 1024
+openssh rsa -in mybank.key -pubout > mybank.pem
+
+
