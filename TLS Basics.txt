@@ -8,6 +8,9 @@ openssh rsa -in ca.key -pubout > ca.pem
 #Gererate Certificate Signing Request
 openssl req -new -key ca.key -subj "/CN=KUBERNETES_CA"  -out ca.csr
 
+##View the generated certificate 
+cat ca.csr | base64 | tr -d "\n"
+
 #Sign Certificates
 openssh x509 -req -in ca.csr -signkey ca.key -out ca.crt
 
