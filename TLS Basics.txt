@@ -11,6 +11,9 @@ openssl req -new -key ca.key -subj "/CN=KUBERNETES_CA"  -out ca.csr
 ##View the generated certificate 
 cat ca.csr | base64 | tr -d "\n"
 
+##decode the certificate with basse64
+echo "---certificate details---" | base64 --decode
+
 #Sign Certificates
 openssh x509 -req -in ca.csr -signkey ca.key -out ca.crt
 
@@ -30,3 +33,9 @@ openssl x509 -in /etc/kubernetes/pki/apiserver.crt -text -noout
 
 Service log
 ##journalctl -u etcd.service -l
+
+##########################
+##kubernetes certificate approve command
+kubectl get csr
+kubectl  certificate approve gulab
+kubectl get csr  gulab -o yaml
