@@ -6,7 +6,7 @@ openssl  genrsa -out ca.key 2048
 openssh rsa -in ca.key -pubout > ca.pem
 
 #Gererate Certificate Signing Request
-openssl req -new -key ca.key -subj "/CN=KUBERNETES_CA"  -out ca.scr
+openssl req -new -key ca.key -subj "/CN=KUBERNETES_CA"  -out ca.csr
 
 #Sign Certificates
 openssh x509 -req -in ca.csr -signkey ca.key -out ca.crt
@@ -16,7 +16,7 @@ openssh x509 -req -in ca.csr -signkey ca.key -out ca.crt
 openssl genrsa -out admin.key 2048
 
 
-openssl req -new -key admin.key -subj "/CN=admin"  -out admin.scr
+openssl req -new -key admin.key -subj "/CN=admin"  -out admin.csr
 
 #sign Certificate
 openssl x509 -req -in admin.csr -CA ca.crt -CAkey ca.key -out admin.crt 
