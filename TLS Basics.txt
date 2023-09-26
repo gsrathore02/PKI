@@ -20,3 +20,10 @@ openssl req -new -key admin.key -subj "/CN=admin"  -out admin.scr
 
 #sign Certificate
 openssl x509 -req -in admin.csr -CA ca.crt -CAkey ca.key -out admin.crt 
+
+#########################################################
+#View Certificate detail
+openssl x509 -in /etc/kubernetes/pki/apiserver.crt -text -noout
+
+Service log
+##journalctl -u etcd.service -l
