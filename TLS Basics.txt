@@ -11,6 +11,8 @@ openssl req -new -key ca.key -subj "/CN=KUBERNETES_CA"  -out ca.csr
 ##View the generated certificate 
 cat ca.csr | base64 | tr -d "\n"
 
+cat akshay.csr | base64 -w 0
+
 ##decode the certificate with basse64
 echo "---certificate details---" | base64 --decode
 
